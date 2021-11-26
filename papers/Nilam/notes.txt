@@ -1,0 +1,31 @@
+Inception:(Ki ki krise likhim... kio krise kom)
+
+1. Prior to its inception (pun intended), most popular CNNs just stacked convolution layers deeper and deeper, hoping to get better performance.
+2. The Inception network on the other hand, was complex (heavily engineered). It used a lot of tricks to push performance; both in terms of speed and accuracy.
+3. Inception v1, Inception v2 and Inception v3, Inception v4 and Inception-ResNet.
+4. Very deep networks are prone to overfitting. It also hard to pass gradient updates through the entire network.
+5. 	Why not have filters with multiple sizes operate on the same level? The network essentially would get a bit “wider” rather than “deeper”
+6. 	The below image is the “naive” inception module. It performs convolution on an input, with 3 different sizes of filters (1x1, 3x3, 5x5). Additionally, max pooling is also performed. The outputs are concatenated and sent to the next inception module.
+7. To make it cheaper, the authors limit the number of input channels by adding an extra 1x1 convolution before the 3x3 and 5x5 convolutions (Inception V1/ GoogLeNet)
+8. GoogLeNet has 9 such inception modules stacked linearly. It is 22 layers deep (27, including the pooling layers). It uses global average pooling at the end of the last inception module.
+
+9. Needless to say, it is a pretty deep classifier. As with any very deep network, it is subject to the vanishing gradient problem.
+To prevent the middle part of the network from “dying out”, the authors introduced two auxiliary classifiers (The purple boxes in the image).
+
+10. Factorize 5x5 convolution to two 3x3 convolution operations to improve computational speed. Although this may seem counterintuitive, a 5x5 convolution is 2.78 times more expensive than a 3x3 convolution. So stacking two 3x3 convolutions infact leads to a boost in performance.  Moreover, they factorize convolutions of filter size nxn to a combination of 1xn and nx1 convolutions
+
+11. Inception V2: almost all kernels were 3X3 and 10 Inception module
+
+12. Inception Net v3 incorporated all of the above upgrades stated for Inception v2, and in addition used the following:
+RMSProp Optimizer.
+Factorized 7x7 convolutions.
+BatchNorm in the Auxillary Classifiers.
+Label Smoothing (A type of regularizing component added to the loss formula that prevents the network from becoming too confident about a class. Prevents over fitting). 
+
+
+=====================================================
+
+Xception:
+https://towardsdatascience.com/review-xception-with-depthwise-separable-convolution-better-than-inception-v3-image-dc967dd42568
+
+ResNext:
